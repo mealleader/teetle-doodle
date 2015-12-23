@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -21,6 +23,7 @@ public class TestFragmentPagerActivity extends FragmentActivity {
     TextView mClickTv;
 
     MyFragmentAdapter mAdapter;
+    int mCurPage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +32,20 @@ public class TestFragmentPagerActivity extends FragmentActivity {
 
         mViewPager = (ViewPager)findViewById(R.id.viewpager);
         mClickTv = (TextView)findViewById(R.id.tv_switch);
+        mClickTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCurPage++;
+                if (mCurPage == NUM_FRAG){
+                    mCurPage = 0;
+                }
+                mViewPager.setCurrentItem(mCurPage);
+            }
+        });
 
         mAdapter = new MyFragmentAdapter(super.getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(1);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -60,7 +73,7 @@ public class TestFragmentPagerActivity extends FragmentActivity {
         mViewPager.setCurrentItem(index);
     }
 
-    class MyFragmentAdapter extends FragmentStatePagerAdapter{
+    class MyFragmentAdapter extends FragmentPagerAdapter{
 
         public MyFragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -68,6 +81,7 @@ public class TestFragmentPagerActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
+            Log.i(TAG, "call getItem:" + position);
             return createFragment(position);
         }
 

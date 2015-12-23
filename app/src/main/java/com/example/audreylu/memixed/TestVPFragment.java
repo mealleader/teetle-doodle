@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ public class TestVPFragment extends Fragment {
     private String mFragmentName = "";
     private static final String TAG = "TestVPFragment";
     private TextView mNameTv;
+    private ImageView mContentIv;
 
     public TestVPFragment(){
 
@@ -39,6 +41,7 @@ public class TestVPFragment extends Fragment {
         Log.i(TAG, mFragmentName + " onCreateView, instance: " + String.valueOf(this));
         View contactsLayout = inflater.inflate(R.layout.fragment_test_vp, container, false);
         mNameTv = (TextView)contactsLayout.findViewById(R.id.tv_name);
+        mContentIv = (ImageView)contactsLayout.findViewById(R.id.iv_content);
         Bundle args = getArguments();
         if (args != null){
 
@@ -67,5 +70,9 @@ public class TestVPFragment extends Fragment {
     public void onDetach() {
         Log.i(TAG, mFragmentName + " onDetach, instance: " + String.valueOf(this));
         super.onDetach();
+    }
+
+    public void update(int resId){
+
     }
 }
