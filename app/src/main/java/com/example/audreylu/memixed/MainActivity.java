@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private Button mBtnUnBind;
     private TextView mTvTest;
     private Button mBtnProgress;
+    private Button mBtnFresco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mBtnUnBind = (Button)findViewById(R.id.btn_unbind);
         mTvTest = (TextView)findViewById(R.id.tv_display);
         mBtnProgress = (Button)findViewById(R.id.btn_progress);
+        mBtnFresco = (Button)findViewById(R.id.tv_fresco);
 
         mBtnStart.setOnClickListener(this);
         mBtnStop.setOnClickListener(this);
         mBtnBind.setOnClickListener(this);
         mBtnUnBind.setOnClickListener(this);
         mBtnProgress.setOnClickListener(this);
+        mBtnFresco.setOnClickListener(this);
 
         addSpannableString();
     }
@@ -59,6 +62,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.btn_progress:
                 startProgress();
                 break;
+
+            case R.id.tv_fresco:
+                startFresco();
+                break;
         }
     }
 
@@ -77,6 +84,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private void startProgress()
     {
         Intent intent = new Intent(this, TestFragmentPagerActivity.class);
+        startActivity(intent);
+    }
+
+    private void startFresco(){
+        Intent intent = new Intent(this, TestFrescoActivity.class);
         startActivity(intent);
     }
 }

@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.audreylu.memixed">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application android:allowBackup="true" android:label="@string/app_name"
         android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
 
@@ -16,6 +18,11 @@
         </activity>
         <activity
             android:name=".TestFragmentPagerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".TestFrescoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
